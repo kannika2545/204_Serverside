@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--
+    <bean id="car" class="sit.int204.lab01.beans.Car">
+        <constructor-arg name="brand" value="Benz E250D" />
+        <constructor-arg name="chasisNumber" value="ZM25487ER" />
+        <constructor-arg name="engine" ref="1KD-FTV" />
+    </bean>
+
+    <bean id="1KD-FTV" class="sit.int204.lab01.beans.DieselEngine">
+        <constructor-arg value="2980" type="int"/>
+    </bean>
+
+    <bean id="GE01" class="sit.int204.lab01.beans.GasolineEngine">
+        <constructor-arg value="1200" type="int"/>
+    </bean>
+    <bean name="carX" class="sit.int204.lab01.beans.Car">
+        <property name="brand" value="BMW X7" />
+        <property name="chasisNumber" value="KE45557" />
+        <property name="engine" ref="1KD-FTV" />
+    </bean>
+-->
+
+    <bean id="engine" class="sit.int204.lab01.beans.DieselEngine">
+        <property name="capacity" value="4990"/>
+    </bean>
+    <bean id="car" class="sit.int204.lab01.beans.Car" autowire="byName">
+        <property name="chasisNumber" value="ZE3197-9485M"/>
+        <property name="brand" value="Benz E520D"/>
+    </bean>
+
+    <bean id="oneKd" class="sit.int204.lab01.beans.DieselEngine">
+        <property name="capacity" value="2982"/>
+    </bean>
+
+<!--
+    <bean id="carX" class="sit.int204.lab01.beans.Car" autowire="byType">
+        <property name="chasisNumber" value="ZE3197-9485M"/>
+        <property name="brand" value="Benz E520D"/>
+    </bean>
+
+    <bean id="1KD-FTV" class="sit.int204.lab01.beans.DieselEngine">
+        <property name="capacity" value="2982"/>
+    </bean>
+    <bean id="brand" class="java.lang.String">
+        <constructor-arg value="Toyota"/>
+    </bean>
+    <bean id="chasisNumber" class="java.lang.String">
+        <constructor-arg value="ZQ12345MZ"/>
+    </bean>
+-->
+    <bean id="carZ" class="sit.int204.lab01.beans.Car" autowire="constructor" /> <!--ไม่ใส่ scope เป็น default ก็คือ singleton-->
+    <bean id="carN" class="sit.int204.lab01.beans.Car" autowire="byName" scope="prototype">
+        <property name="chasisNumber" value="BY-NAME-1234"/>
+        <property name="brand" value="BMW X7"/>
+    </bean>
+
+    <bean id="counter" class="sit.int204.lab01.beans.Counter" factory-method="getInstance" />
+    <bean id="aCounter" class="sit.int204.lab01.beans.Counter" factory-method="getInstance" />
+
+    <bean id="geometricShapeFactory" class="sit.int204.lab01.beans.GeometricShapeFactory" />
+    <bean id="circle" factory-bean="geometricShapeFactory" class="sit.int204.lab01.beans.Circle"/>
+    <bean id="rectangle" factory-bean="geometricShapeFactory" class="sit.int204.lab01.beans.Rectangle">
+        <property name="width" value="3.1" />
+        <property name="height" value="2.5" />
+    </bean>
+
+
+</beans>
